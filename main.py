@@ -4,8 +4,8 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 import os
 
-TOKEN = os.environ.get(TOKEN)
-chat_id = os.environ.get(chat_id)
+TOKEN = os.environ.get("TOKEN")
+chat_id = os.environ.get("chat_id")
 
 class Signal(BaseModel):
     mes: str | None = ""
