@@ -9,10 +9,9 @@ chat_id = os.environ.get("chat_id")
 
 # class Signal(BaseModel):
 #     mes: str | None = ""
-
 app = FastAPI()
 @app.post("/telegram")
-async def telegram(mes):
+async def telegram(mes: str| None = ""):
     Url = f"https://api.telegram.org/bot{TOKEN}/sendMessage?chat_id={chat_id}&text={mes}"
     requests.get(Url) # this sends the message
     print(Url)
