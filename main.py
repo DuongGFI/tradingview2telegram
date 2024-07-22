@@ -12,7 +12,8 @@ class Signal(BaseModel):
 app = FastAPI()
 @app.post("/telegram")
 async def telegram(signal: Signal):
-    Url = f"https://api.telegram.org/bot{TOKEN}/sendMessage?chat_id={chat_id}&text={signal.mes}"
-    requests.get(Url) # this sends the message
-    print(Url)
+    if signal.mes != "":
+        Url = f"https://api.telegram.org/bot{TOKEN}/sendMessage?chat_id={chat_id}&text={signal.mes}"
+        requests.get(Url) # this sends the message
+        print(Url)
     return {"status": "Success"}
