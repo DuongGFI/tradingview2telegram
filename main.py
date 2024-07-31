@@ -3,12 +3,15 @@ import requests
 from fastapi import FastAPI
 from pydantic import BaseModel
 import os
+import time
 
 TOKEN = os.environ.get("TOKEN")
 chat_id = os.environ.get("chat_id")
+app_url = os.environ.get("app_url")
 
 class Signal(BaseModel):
     mes: str | None = ""
+
 app = FastAPI()
 @app.post("/telegram")
 async def telegram(signal: Signal):
@@ -17,3 +20,7 @@ async def telegram(signal: Signal):
         requests.get(Url) # this sends the message
         print(Url)
     return {"status": "Success"}
+
+while (True):
+    requests.get(app_url) # Tự ping
+    time.sleep(600)
